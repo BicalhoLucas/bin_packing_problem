@@ -22,18 +22,19 @@ def first_fit(items, bin_capacity):
     bins = []
     for item in items:
         found_bin = False
-    for bin in bins:
-        if sum(bin) + item <= bin_capacity:
-            bin.append(item)
-            found_bin = True
-            break
+        for bin in bins:
+            if sum(bin) + item <= bin_capacity:
+                bin.append(item)
+                found_bin = True
+                break
         if not found_bin:
             bins.append([item])
+
     return bins
 
 def main():
-    items = [1, 1, 5, 4, 7, 1, 3]
-    bin_capacity = 10
+    items = [9, 7, 9, 2, 2, 10, 3, 9, 1, 7, 10, 7, 8, 10, 5]
+    bin_capacity = 20
 
     result = first_fit(items, bin_capacity)
     print(result)
