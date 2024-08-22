@@ -15,6 +15,7 @@
     Saida:
         * Uma lista de listas, onde cada lista interna representa
           um pacote tendo como valores o tamanho de cada item.
+
 """
 
 def first_fit(items, bin_capacity):
@@ -31,7 +32,7 @@ def first_fit(items, bin_capacity):
     return bins
 
 def main():
-    items = [2, 5, 4, 7, 1, 3]
+    items = [1, 1, 5, 4, 7, 1, 3]
     bin_capacity = 10
 
     result = first_fit(items, bin_capacity)
