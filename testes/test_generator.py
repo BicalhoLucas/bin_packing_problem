@@ -25,7 +25,8 @@ def gerar_entradas(num_entradas, num_itens, capacidade_bin, max_tamanho_item):
     return entradas
 
 def salvar_entradas_em_arquivo(entradas, nome_arquivo):
-    caminho = os.path.join("testes_gerados", nome_arquivo)
+    pasta_saida = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../testes/testes_gerados')
+    caminho = os.path.join(pasta_saida, nome_arquivo) 
     with open(caminho, 'w') as arquivo:
         for entrada in entradas:
             linha = ' '.join(map(str, entrada))
@@ -37,7 +38,7 @@ def main():
     num_entradas = 10
     num_itens = 20
     capacidade_bin = 20
-    max_tamanho_item = 20
+    max_tamanho_item = capacidade_bin
 
     opcao = int(input("  0 - Usar valores pré-definidos \n  1 - Informar valores\n   => "))
 
@@ -45,7 +46,7 @@ def main():
         num_entradas = int(input("Numero de entradas: "))
         num_itens = int(input("Numero de itens: "))
         capacidade_bin = int(input("Capacidade do bin: "))
-        max_tamanho_item = int(input("tamanho_maximo de um item: "))
+        max_tamanho_item = capacidade_bin
 
     entradas = gerar_entradas(num_entradas, num_itens, capacidade_bin, max_tamanho_item)
     for entrada in entradas:
@@ -55,7 +56,7 @@ def main():
     opcao = input(" Salvar os testes em arquivo? S (Sim) | N (Não) \n => ")
     if (opcao == "S"):
         nome_arquivo = str(input("Nome do arquivo (com .txt): "))
-        nome_arquivo = nome_arquivo.upper()
+        nome_arquivo = nome_arquivo
         salvar_entradas_em_arquivo(entradas, nome_arquivo)
 
 
