@@ -1,6 +1,7 @@
 from itertools import permutations
 import os
 import time
+import pandas as pd
 
 def is_valid_partition(partition, bin_capacity):
     for bin_items in partition:
@@ -50,6 +51,8 @@ def read_from_file(file_path):
 def main():
     file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../testes/testes_gerados/lucas.txt')
     entries = read_from_file(file_path)
+
+    df = pd.DataFrame(columns=['Tamanho do Array', 'Tempo (segundos)'])
     
     for index, (bin_capacity, items) in enumerate(entries):
         print(f"\nExecutando para a Entrada {index + 1}...")
@@ -77,6 +80,9 @@ def main():
 
         # Exibir o tempo gasto
         print(f"Tempo gasto para encontrar a solução: {elapsed_time:.4f} segundos")
+        df = df._append({'Tamanho do Array': len(solution), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
+
+    df.to_csv('brute_force_results.csv', index=False)
 
 if __name__ == "__main__":
     main()
