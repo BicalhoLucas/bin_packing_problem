@@ -75,7 +75,7 @@ def main():
         end_time = time.time()
         elapsed_time = end_time - start_time
 
-        print(f"Tempo gasto para encontrar a solução: {elapsed_time:.8f} segundos")
+        print(f"Tempo gasto para encontrar a solução: {elapsed_time:.10f} segundos")
         result = first_fit(items, bin_capacity)
         print(result)
         df = df._append({'Tamanho do Array': len(items), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
