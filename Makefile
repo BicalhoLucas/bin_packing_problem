@@ -12,12 +12,12 @@ all: run_brute_force run_first_fit
 # Executa o programa de força bruta
 run_brute_force:
 	@echo "Executando BP_força_bruta.py com o arquivo de teste..."
-	python $(BRUTE_FORCE)
+	python3 $(BRUTE_FORCE)
 
 # Executa o programa heurístico
 run_first_fit:
 	@echo "Executando first_fit.py com o arquivo de teste..."
-	python $(FIRST_FIT)
+	python3 $(FIRST_FIT)
 
 # Alvo para rodar tudo
 run_all: run_brute_force run_first_fit
