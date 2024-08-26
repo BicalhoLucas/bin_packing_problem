@@ -52,7 +52,7 @@ def main():
     file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../testes/testes_gerados/lucas.txt')
     entries = read_from_file(file_path)
 
-    df = pd.DataFrame(columns=['Tamanho do Array', 'Tempo (segundos)'])
+    df = pd.DataFrame(columns=['Numero de Bins', 'Tempo (segundos)'])
     
     for index, (bin_capacity, items) in enumerate(entries):
         print(f"\nExecutando para a Entrada {index + 1}...")
@@ -80,7 +80,7 @@ def main():
 
         # Exibir o tempo gasto
         print(f"Tempo gasto para encontrar a solução: {elapsed_time:.4f} segundos")
-        df = df._append({'Tamanho do Array': len(solution), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
+        df = df._append({'Numero de Bins': len(solution), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
 
     df.to_csv('brute_force_results.csv', index=False)
 

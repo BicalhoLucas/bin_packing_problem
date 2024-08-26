@@ -19,10 +19,6 @@ run_first_fit:
 	@echo "Executando first_fit.py com o arquivo de teste..."
 	python $(FIRST_FIT)
 
-# Limpeza de arquivos compilados, se necessário
-clean:
-	@echo "Nada a limpar para projetos Python!"
-
 # Alvo para rodar tudo
 run_all: run_brute_force run_first_fit
 

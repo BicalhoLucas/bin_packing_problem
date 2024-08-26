@@ -61,7 +61,7 @@ def main():
     entries = read_from_file(file_path)   
 
     # Criar um DataFrame para armazenar os resultados
-    df = pd.DataFrame(columns=['Tamanho do Array', 'Tempo (segundos)'])
+    df = pd.DataFrame(columns=['Numero de Bins', 'Tempo (segundos)'])
 
     for index, (bin_capacity, items) in enumerate(entries):
         print(f"\nExecutando para a Entrada {index + 1}...")
@@ -78,7 +78,7 @@ def main():
         print(f"Tempo gasto para encontrar a solução: {elapsed_time:.10f} segundos")
         result = first_fit(items, bin_capacity)
         print(result)
-        df = df._append({'Tamanho do Array': len(items), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
+        df = df._append({'Numero de Bins': len(result), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
     
     df.to_csv('first_fit_results.csv', index=False)
 if __name__ == "__main__":
