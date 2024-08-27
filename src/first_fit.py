@@ -20,7 +20,6 @@
 from itertools import permutations
 import os
 import time
-import pandas as pd
 
 def first_fit(items, bin_capacity):
     bins = []
@@ -53,15 +52,10 @@ def read_from_file(file_path):
 
 def main():
 
-    '''
-    items = [9, 7, 9, 2, 2, 10, 3, 9, 1, 7, 10, 7, 8, 10, 5]
-    bin_capacity = 20
-    '''
-    file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../testes/testes_gerados/lucas.txt')
+    file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../testes/testes_gerados/teste.txt')
     entries = read_from_file(file_path)   
 
     # Criar um DataFrame para armazenar os resultados
-    df = pd.DataFrame(columns=['Numero de Bins [C(S)]', 'Tempo (segundos)'])
 
     for index, (bin_capacity, items) in enumerate(entries):
         print(f"\nExecutando para a Entrada {index + 1}...")
@@ -75,11 +69,13 @@ def main():
         end_time = time.time()
         elapsed_time = end_time - start_time
 
-        print(f"Tempo gasto para encontrar a solução: {elapsed_time:.10f} segundos")
+        
         result = first_fit(items, bin_capacity)
-        print(result)
-        df = df._append({'Numero de Bins [C(S)]': len(result), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
+
+        for i, bin_items in enumerate(result, 1):
+            print(f"Bin {i}: {bin_items}")
+
+        print(f"Tempo gasto para encontrar a solução: {elapsed_time:.8f} segundos")
     
-    df.to_csv('first_fit_results.csv', index=False)
 if __name__ == "__main__":
     main()

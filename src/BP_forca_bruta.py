@@ -1,7 +1,6 @@
 from itertools import combinations
 import os
 import time
-import pandas as pd
 
 def is_valid_partition(partition, bin_capacity):
     for bin_items in partition:
@@ -49,10 +48,9 @@ def read_from_file(file_path):
     return entries
 
 def main():
-    file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../testes/testes_gerados/lucas.txt')
+    file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../testes/testes_gerados/teste.txt')
     entries = read_from_file(file_path)
 
-    df = pd.DataFrame(columns=['Numero de Bins', 'Tempo (segundos)'])
     
     for index, (bin_capacity, items) in enumerate(entries):
         print(f"\nExecutando para a Entrada {index + 1}...")
@@ -76,10 +74,8 @@ def main():
             print("Nenhuma solução válida encontrada para esta entrada.")
 
         # Exibir o tempo gasto
-        print(f"Tempo gasto para encontrar a solução: {elapsed_time:.4f} segundos")
-        df = df._append({'Numero de Bins [C(S*)]': len(solution), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
-
-    df.to_csv('brute_force_results.csv', index=False)
+        print(f"Tempo gasto para encontrar a solução: {elapsed_time:.8f} segundos")
+        
 
 if __name__ == "__main__":
     main()
