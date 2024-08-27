@@ -31,7 +31,10 @@ def first_fit(items, bin_capacity):
                 found_bin = True
                 break
         if not found_bin:
-            bins.append([item])
+            if item > bin_capacity:
+                return []
+            else:
+                bins.append([item])
 
     return bins
 
@@ -71,9 +74,11 @@ def main():
 
         
         result = first_fit(items, bin_capacity)
-
-        for i, bin_items in enumerate(result, 1):
-            print(f"Bin {i}: {bin_items}")
+        if result == []:
+            print("Nenhuma solução válida encontrada para esta entrada.")
+        else:
+            for i, bin_items in enumerate(result, 1):
+                print(f"Bin {i}: {bin_items}")
 
         print(f"Tempo gasto para encontrar a solução: {elapsed_time:.8f} segundos")
     

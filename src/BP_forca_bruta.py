@@ -67,7 +67,6 @@ def main():
 
         if solution:
             # Exibir a solução
-            print(f"Melhor solução encontrada usa {num_bins} bins:")
             for i, bin_items in enumerate(solution, 1):
                 print(f"Bin {i}: {bin_items}")
         else:
