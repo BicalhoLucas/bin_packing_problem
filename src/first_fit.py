@@ -43,7 +43,7 @@ def read_from_file(file_path):
     # Processar cada linha como uma entrada única
     entries = []
     for line in lines:
-        data = list(map(int, line.strip().split()))
+        data = list(map(float, line.strip().split()))
         bin_capacity = data[0]
         items = data[1:]
         entries.append((bin_capacity, items))
@@ -61,7 +61,7 @@ def main():
     entries = read_from_file(file_path)   
 
     # Criar um DataFrame para armazenar os resultados
-    df = pd.DataFrame(columns=['Numero de Bins', 'Tempo (segundos)'])
+    df = pd.DataFrame(columns=['Numero de Bins [C(S)]', 'Tempo (segundos)'])
 
     for index, (bin_capacity, items) in enumerate(entries):
         print(f"\nExecutando para a Entrada {index + 1}...")
@@ -78,7 +78,7 @@ def main():
         print(f"Tempo gasto para encontrar a solução: {elapsed_time:.10f} segundos")
         result = first_fit(items, bin_capacity)
         print(result)
-        df = df._append({'Numero de Bins': len(result), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
+        df = df._append({'Numero de Bins [C(S)]': len(result), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
     
     df.to_csv('first_fit_results.csv', index=False)
 if __name__ == "__main__":

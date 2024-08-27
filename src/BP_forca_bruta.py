@@ -1,4 +1,4 @@
-from itertools import permutations
+from itertools import combinations
 import os
 import time
 import pandas as pd
@@ -15,7 +15,7 @@ def generate_partitions(items):
         return
     
     for i in range(1, len(items) + 1):
-        for subset in permutations(items, i):
+        for subset in combinations(items, i):
             remaining = list(items)
             for item in subset:
                 remaining.remove(item)
@@ -41,7 +41,7 @@ def read_from_file(file_path):
     # Processar cada linha como uma entrada única
     entries = []
     for line in lines:
-        data = list(map(int, line.strip().split()))
+        data = list(map(float, line.strip().split()))
         bin_capacity = data[0]
         items = data[1:]
         entries.append((bin_capacity, items))
@@ -60,15 +60,12 @@ def main():
         # Inicia a contagem de tempo de execução do código
         start_time = time.time()
 
-        # Resolver o problema
+        # Resolve o problema
         solution, num_bins = brute_force_bin_packing(items, bin_capacity)
 
         # Para a contagem antes de exibir a solução
         end_time = time.time()
         elapsed_time = end_time - start_time
-
-        # Depuração: Exibir o valor da solução e do número de bins
-        # print(f"Depuração - Solution: {solution}, Num_bins: {num_bins}")
 
         if solution:
             # Exibir a solução
@@ -80,7 +77,7 @@ def main():
 
         # Exibir o tempo gasto
         print(f"Tempo gasto para encontrar a solução: {elapsed_time:.4f} segundos")
-        df = df._append({'Numero de Bins': len(solution), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
+        df = df._append({'Numero de Bins [C(S*)]': len(solution), 'Tempo (segundos)': elapsed_time}, ignore_index=True)
 
     df.to_csv('brute_force_results.csv', index=False)
 
